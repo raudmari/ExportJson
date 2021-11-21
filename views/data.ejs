@@ -1,0 +1,39 @@
+<%- include("header") -%>
+
+<div class="container is-max-desktop">
+  <div class="columns">
+    <div class="column is-centered">
+      <h1 class="title is-1 has-text-centered" style="margin-top: 30px">Detailne info</h1>
+      <h2 class="subtitle is-3 has-text-centered"><a href="/">Tagasi avalehele</a></h2>
+      <table class="table is-striped" style="width:100%">
+        <thead>
+          <tr>
+            <th>Eesnimi</th>
+            <th>Perenimi</th>
+            <th>Sugu</th>
+            <th class="has-text-centered">Sünnipäev</th>
+            <th>Päritolu riik</th>
+            <th>e-post</th>
+            <th>Ettevõte</th>
+            <th>HEX-kood</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= data.Firstname %></td>
+            <td><%= data.Lastname%></td>
+            <td><%= data.Gender%></td>
+            <td class="has-text-centered"><%= myfuncs.convertDate(data.Birthdate)%></td>
+            <td><%= data.Country%></td>
+            <td><%= myfuncs.emailCreation(data.Firstname, data.Lastname, data.Company)%></td>
+            <td><%= data.Company%></td>
+            <td bgcolor="<%= data.Color %>"><%= data.Color%></td>
+          </tr>
+        </tbody>
+
+      </table>
+    </div>
+  </div>
+</div>
+
+<%- include("footer") -%>

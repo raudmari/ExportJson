@@ -1,0 +1,88 @@
+<%- include("header") -%>
+<div class="container">
+  <div class="columns is-centered">
+    <div class="column">
+      <h1 class="title is-1 has-text-centered" style="margin-top: 30px">Andmetabel</h1>
+      <table id="myTable" style="width:100%" class="table is-striped">
+        <thead>
+          <tr>
+            <th class="has-text-right">Jrk</th>
+            <th>Eesnimi</th>
+            <th>Perenimi</th>
+            <th>Sugu</th>
+            <th class="has-text-centered">Sünnipäev</th>
+            <th>Päritolu riik</th>
+            <th>e-post</th>
+            <th>Ettevõte</th>
+            <th>HEX-kood</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% let i = 0;
+              for(let ej of exportJson.objects) {
+                x = myfuncs.allData(exportJson, i);
+                i++;
+                if(x == true) { %>
+          <tr class="clickable" style="cursor: pointer" onclick="window.location='/<%= ej.ID %>'">
+            <td class="has-text-right"><%= i%></td>
+            <td><%= ej.Firstname%></td>
+            <td><%= ej.Lastname%></td>
+            <td><%= ej.Gender%></td>
+            <td class="has-text-centered"><%= myfuncs.convertDate(ej.Birthdate)%></td>
+            <td><%= ej.Country%></td>
+            <td><%= myfuncs.emailCreation(ej.Firstname, ej.Lastname, ej.Company)%></td>
+            <td><%= ej.Company%></td>
+            <td bgcolor=<%= ej.Color %>><%= ej.Color.toUpperCase()%></td>
+          </tr>
+          <% } else { %>
+          <tr>
+            <td class="has-text-right"><%= i %></td>
+            <td><%= ej.Firstname %></td>
+            <td><%= ej.Lastname %></td>
+            <td><%= ej.Gender %></td>
+            <td class="has-text-centered"><%= myfuncs.convertDate(ej.Birthdate)%></td>
+            <td><%= ej.Country%></td>
+            <td><%= myfuncs.emailCreation(ej.Firstname, ej.Lastname, ej.Company)%></td>
+            <td><%= ej.Company%></td>
+            <td bgcolor=<%= ej.Color %>><%= ej.Color.toUpperCase()%></td>
+          </tr>
+          <% }
+          } %>
+        </tbody>
+
+      </table>
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.3/css/dataTables.bulma.min.css"></script>
+<script src="https://cdn.datatables.net/1.11.3/js/dataTables.bulma.min.js"></script>
+
+<script>
+  $(document).ready(function() {
+    $('#myTable').DataTable({
+      responsive: true,
+      pagingType: "simple_numbers",
+      "order": [
+        [2, "asc"]
+      ],
+      "language": {
+        "lengthMenu": "Näita _MENU_ kirjet lehel",
+        "zeroRecords": "Ühtegi kirjet ei leitud",
+        "info": "Näitab _PAGE_ lehte _PAGES_ lehest",
+        "infoEmpty": "Kirjeid pole",
+        "search": "Otsing:",
+        "infoFiltered": "(filtered from _MAX_ total records)",
+        "paginate": {
+          "next": "Järgmine",
+          "previous": "Eelmine"
+        },
+      }
+    });
+  });
+</script>
+
+<%- include("footer") -%>
