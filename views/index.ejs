@@ -1,5 +1,5 @@
-<%- include("header") -%>
-<div class="container">
+<%- include("../partials/header") -%>
+
   <div class="columns is-centered">
     <div class="column">
       <h1 class="title is-1 has-text-centered" style="margin-top: 30px">Andmetabel</h1>
@@ -54,7 +54,7 @@
       </table>
     </div>
   </div>
-</div>
+
 
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
@@ -65,7 +65,7 @@
   $(document).ready(function() {
     $('#myTable').DataTable({
       responsive: true,
-      pagingType: "simple_numbers",
+      pagingType: "full_numbers",
       "order": [
         [2, "asc"]
       ],
@@ -77,12 +77,14 @@
         "search": "Otsing:",
         "infoFiltered": "(filtered from _MAX_ total records)",
         "paginate": {
+          "first": "Algus",
           "next": "Järgmine",
-          "previous": "Eelmine"
+          "previous": "Eelmine",
+          "last": "Lõpp"
         },
       }
     });
   });
 </script>
 
-<%- include("footer") -%>
+<%- include("../partials/footer") -%>
